@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "467858285423",
+    "project_id": "color-app-66fd2",
+    "storage_bucket": "color-app-66fd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467858285423:android:09f13ef8856fc9619ebe9a",
+        "android_client_info": {
+          "package_name": "com.example.colorapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe2G4c_-w1-zosN89eTZl-YenHYF2LU6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
