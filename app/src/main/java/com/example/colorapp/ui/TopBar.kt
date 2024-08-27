@@ -45,11 +45,10 @@ fun TopBar(){
                 onClick = { },
                 modifier = Modifier.padding(end = 10.dp, top = 15.dp).wrapContentSize(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Purple80, // Set the background color
-                    contentColor = Color.White // Set the text/icon color
+                    containerColor = Purple80,
+                    contentColor = Color.White
                 )
             ) {
-                // Icon for the sync action
                 Text(text = "12")
                 Spacer(modifier = Modifier.width(8.dp))
                 Icon(

@@ -10,34 +10,42 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.colorapp.ColorViewModel
 import com.example.colorapp.ui.theme.Purple40
 import com.example.colorapp.ui.theme.Purple80
+import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-data class Cards(
-    val colorCode: Color,
-    val dataCreated: String,
-    val colorName: String
-)
 
 @Composable
-fun FAB(listCards: SnapshotStateList<Cards>){
+fun FAB(viewModel:ColorViewModel= koinViewModel()){
+
+    val coroutineScope = rememberCoroutineScope()
 
     Button(onClick = {
         // Generate a random color hex string
-        val randomColorHex = generateRandomColor()
+        val cardColor = generateRandomColor()
         // Convert the hex string to a Color object
-        val cardColor = colorFromHex(randomColorHex)
+        //val cardColor = colorFromHex(randomColorHex)
         val currentTimeMillis = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val formattedDate = dateFormat.format(Date(currentTimeMillis))
-        listCards.add(Cards(cardColor, formattedDate, randomColorHex))},
+
+        coroutineScope.launch {
+            viewModel.insertColor(
+                com.example.colorapp.data.CardColor(
+                    colorCode = cardColor,
+                    dateCreated = formattedDate
+                )
+            )
+        } },
         colors = ButtonDefaults.buttonColors(
             containerColor = Purple80, // Set the background color
             contentColor = Color.White, // Set the text/icon color
@@ -62,6 +70,7 @@ fun generateRandomColor(): String {
     return String.format("#%06X", nextInt)
 }
 
+/*
 fun colorFromHex(hex: String): Color {
     return Color(android.graphics.Color.parseColor(hex))
-}
+}*/

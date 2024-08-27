@@ -6,21 +6,23 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import com.example.colorapp.ColorViewModel
+import org.koin.androidx.compose.koinViewModel
 
-//@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(){
-    val listCards = remember{mutableStateListOf<Cards>()}
+fun HomeScreen(viewModel: ColorViewModel = koinViewModel()){
+
+    val colorState = viewModel.colors.collectAsState()
+
     Scaffold(
         topBar = { TopBar()},
-        floatingActionButton = { FAB(listCards)}
+        floatingActionButton = { FAB()}
     ){
         LazyVerticalGrid(columns = GridCells.Fixed(2),modifier=Modifier.padding(it)) {
-            items(listCards){item ->
-            CardScreen(item)
+            items(colorState.value){color ->
+            CardScreen(color)
             }
         }
     }
