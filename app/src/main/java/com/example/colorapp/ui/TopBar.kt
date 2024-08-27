@@ -17,6 +17,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,7 +29,8 @@ import com.example.colorapp.ui.theme.Purple40
 import com.example.colorapp.ui.theme.Purple80
 
 @Composable
-fun TopBar(){
+fun TopBar(countState: State<Int>) {
+
     Box(modifier = Modifier
         .fillMaxWidth()
         .height(70.dp)
@@ -49,7 +51,7 @@ fun TopBar(){
                     contentColor = Color.White
                 )
             ) {
-                Text(text = "12")
+                Text(text = countState.value.toString())
                 Spacer(modifier = Modifier.width(8.dp))
                 Icon(
                     imageVector = Icons.Filled.Sync,

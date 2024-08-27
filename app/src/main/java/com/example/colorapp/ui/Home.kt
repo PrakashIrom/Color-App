@@ -15,9 +15,10 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeScreen(viewModel: ColorViewModel = koinViewModel()){
 
     val colorState = viewModel.colors.collectAsState()
+    val countState = viewModel.count.collectAsState()
 
     Scaffold(
-        topBar = { TopBar()},
+        topBar = { TopBar(countState)},
         floatingActionButton = { FAB()}
     ){
         LazyVerticalGrid(columns = GridCells.Fixed(2),modifier=Modifier.padding(it)) {

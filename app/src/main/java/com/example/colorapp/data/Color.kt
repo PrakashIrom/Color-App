@@ -8,5 +8,6 @@ data class CardColor(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val colorCode: String,
-    val dateCreated: String
+    val dateCreated: String,
+    val isSynced: Boolean = false
 )

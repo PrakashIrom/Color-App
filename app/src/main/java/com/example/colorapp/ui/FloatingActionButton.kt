@@ -30,10 +30,8 @@ fun FAB(viewModel:ColorViewModel= koinViewModel()){
     val coroutineScope = rememberCoroutineScope()
 
     Button(onClick = {
-        // Generate a random color hex string
+
         val cardColor = generateRandomColor()
-        // Convert the hex string to a Color object
-        //val cardColor = colorFromHex(randomColorHex)
         val currentTimeMillis = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val formattedDate = dateFormat.format(Date(currentTimeMillis))
@@ -47,8 +45,8 @@ fun FAB(viewModel:ColorViewModel= koinViewModel()){
             )
         } },
         colors = ButtonDefaults.buttonColors(
-            containerColor = Purple80, // Set the background color
-            contentColor = Color.White, // Set the text/icon color
+            containerColor = Purple80,
+            contentColor = Color.White,
         ), modifier = Modifier.sizeIn(minWidth = 0.dp, minHeight = 0.dp)
         ){
         Text(text = "Add Color",
@@ -69,8 +67,3 @@ fun generateRandomColor(): String {
     // Format the integer to a 6-digit hex string and prepend the '#' character
     return String.format("#%06X", nextInt)
 }
-
-/*
-fun colorFromHex(hex: String): Color {
-    return Color(android.graphics.Color.parseColor(hex))
-}*/

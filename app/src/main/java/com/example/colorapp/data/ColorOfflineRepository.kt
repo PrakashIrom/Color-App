@@ -8,4 +8,8 @@ class ColorOfflineRepository(private val colorDao: ColorDao) : ColorRepository {
 
     override fun getAllColors(): Flow<List<CardColor>> = colorDao.getAllColors()
 
+    override fun getUnsyncedColorsCount(): Flow<Int> = colorDao.countUnsyncedColors()
+
+    override suspend fun updateUnsyncedColors() = colorDao.updateUnsyncedColors()
+
 }
