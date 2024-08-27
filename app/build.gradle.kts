@@ -52,9 +52,12 @@ android {
 
 dependencies {
 
-    implementation("com.google.firebase:firebase-analytics-ktx:22.0.2")
+    implementation("com.google.firebase:firebase-analytics-ktx:22.1.0")
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
     implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+
+    implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
