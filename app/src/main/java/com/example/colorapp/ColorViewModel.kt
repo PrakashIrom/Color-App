@@ -3,11 +3,12 @@ package com.example.colorapp
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.colorapp.data.CardColor
 import com.example.colorapp.data.ColorRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class ColorViewModel(private val colorRepository: ColorRepository): ViewModel() {
@@ -22,8 +23,15 @@ class ColorViewModel(private val colorRepository: ColorRepository): ViewModel() 
         colorRepository.insertColor(color)
     }
 
-    init{
+    suspend fun updateUnsyncedColor(){
+            colorRepository.updateUnsyncedColors()
+    }
 
+    suspend fun getUnsyncedColors(): List<CardColor> {
+       return colorRepository.getUnsyncedColors().first()
+    }
+
+    init{
         viewModelScope.launch {
             colorRepository.getAllColors().collect{
                 _colors.value = it

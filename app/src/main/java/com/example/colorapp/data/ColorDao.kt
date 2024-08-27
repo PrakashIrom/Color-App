@@ -15,6 +15,9 @@ interface ColorDao {
     @Query("SELECT * FROM CardColors")
     fun getAllColors(): Flow<List<CardColor>>
 
+    @Query("SELECT * FROM CardColors WHERE isSynced = 0")
+    fun getUnsyncedColors(): Flow<List<CardColor>>
+
     @Query("SELECT COUNT(*) FROM CardColors WHERE isSynced = 0")
     fun countUnsyncedColors(): Flow<Int>
 

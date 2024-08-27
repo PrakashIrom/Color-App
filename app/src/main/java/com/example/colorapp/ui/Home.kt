@@ -18,7 +18,7 @@ fun HomeScreen(viewModel: ColorViewModel = koinViewModel()){
     val countState = viewModel.count.collectAsState()
 
     Scaffold(
-        topBar = { TopBar(countState)},
+        topBar = { TopBar(countState, viewModel)},
         floatingActionButton = { FAB()}
     ){
         LazyVerticalGrid(columns = GridCells.Fixed(2),modifier=Modifier.padding(it)) {

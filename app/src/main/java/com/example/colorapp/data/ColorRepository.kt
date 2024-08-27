@@ -10,5 +10,7 @@ interface ColorRepository {
 
     fun getUnsyncedColorsCount(): Flow<Int>
 
+    fun getUnsyncedColors(): Flow<List<CardColor>>
+
     suspend fun updateUnsyncedColors()
 }
